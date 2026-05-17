@@ -1,0 +1,450 @@
+/* ---------- RESET ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.page {
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+    background-color: #fff;
+    color: #111;
+    scroll-behavior: smooth;
+}
+
+/* ---------- CONTAINER ---------- */
+.container {
+    max-width: 1523px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* ---------- HEADER ---------- */
+.header {
+    padding: 20px 0;
+    background: #fff;
+    border-bottom: 1px solid #eaeaea;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.logo {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    color: #111;
+    transition: opacity 0.2s;
+}
+.logo:hover {
+    opacity: 0.8;
+}
+
+/* ---------- SEARCH ---------- */
+.search {
+    display: flex;
+    align-items: center;
+    background: #f5f5f5;
+    border-radius: 30px;
+    padding: 8px 18px;
+    gap: 8px;
+}
+.search__icon {
+    font-size: 18px;
+    color: #666;
+}
+.search__input {
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    flex: 1;
+    outline: none;
+}
+.search__filter {
+    font-size: 20px;
+    color: #444;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+/* ---------- NAVIGATION ---------- */
+.nav {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+}
+.nav__link {
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #1e1e1e;
+    transition: 0.2s;
+    cursor: pointer;
+}
+.nav__link_active {
+    color: #9A3636;
+}
+.nav__link:hover {
+    opacity: 0.7;
+}
+
+/* ---------- USER ACTIONS ---------- */
+.user-actions {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+.user-actions__icon {
+    font-size: 28px;
+    color: #111;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* ---------- REVIEWS (ОБЩИЙ КОМПОНЕНТ) ---------- */
+.reviews {
+    background: #f8f8f8;
+    padding: 80px 0;
+    margin-top: 80px;
+}
+.reviews__header {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 60px;
+    text-align: center;
+}
+.reviews__carousel {
+    position: relative;
+}
+.reviews__track {
+    display: flex;
+    gap: 50px;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+.review-card {
+    flex: 0 0 calc(33.333% - 34px);
+    background: white;
+    border-radius: 32px;
+    padding: 40px 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+.review-card__profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+.review-card__avatar {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #ccc;
+}
+.review-card__name {
+    font-size: 24px;
+    font-weight: 700;
+}
+.review-card__service {
+    font-size: 16px;
+    color: #777;
+}
+.review-card__text {
+    font-size: 16px;
+    line-height: 1.4;
+    margin: 20px 0;
+}
+.review-card__stars {
+    color: #111;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+.reviews__controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 60px;
+}
+.reviews__arrow {
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: 0.2s;
+}
+.reviews__arrow:hover {
+    transform: translateY(-2px);
+}
+.reviews__progress {
+    flex: 1;
+    height: 2px;
+    background: #ccc;
+    margin: 0 20px;
+    position: relative;
+}
+.reviews__progress-fill {
+    position: absolute;
+    height: 4px;
+    background: #111;
+    width: 33.33%;
+    top: -1px;
+    transition: 0.3s;
+}
+
+/* ---------- FOOTER ---------- */
+.footer {
+    background: #fff;
+    padding: 80px 0 40px;
+    border-top: 1px solid #eee;
+}
+.footer__columns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 60px;
+}
+.footer__col {
+    min-width: 160px;
+}
+.footer__col-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 24px;
+}
+.footer__col-text,
+.footer__col-link {
+    font-size: 16px;
+    color: #444;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 12px;
+}
+.footer__col-link:hover {
+    text-decoration: underline;
+}
+.footer__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 20px;
+    border-top: 1px solid #eaeaea;
+}
+.social {
+    display: flex;
+    gap: 20px;
+}
+.social__icon {
+    font-size: 22px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.social__icon:hover {
+    opacity: 0.7;
+}
+.footer__copyright {
+    font-size: 14px;
+    color: #666;
+}
+
+/* ---------- CHAT FAB ---------- */
+.chat-fab {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #111;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+    z-index: 99;
+    transition: 0.2s;
+}
+.chat-fab:hover {
+    transform: scale(1.05);
+}
+
+/* ---------- CHAT WIDGET ---------- */
+.chat {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 380px;
+    max-width: calc(100vw - 60px);
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    transform: scale(0);
+    transform-origin: bottom right;
+    transition: transform 0.2s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+.chat_visible {
+    transform: scale(1);
+    opacity: 1;
+    visibility: visible;
+}
+.chat__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: #111;
+    color: white;
+    border-radius: 24px 24px 0 0;
+    font-weight: 600;
+}
+.chat__close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    line-height: 1;
+}
+.chat__messages {
+    flex: 1;
+    min-height: 400px;
+    max-height: 500px;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: #f9f9f9;
+}
+.chat-message {
+    display: flex;
+    flex-direction: column;
+    max-width: 85%;
+    padding: 8px 12px;
+    border-radius: 18px;
+    font-size: 14px;
+    line-height: 1.4;
+    position: relative;
+}
+.chat-message_user {
+    align-self: flex-end;
+    background: #111;
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+.chat-message_bot {
+    align-self: flex-start;
+    background: #eaeaea;
+    color: #111;
+    border-bottom-left-radius: 4px;
+}
+.chat-message__text {
+    word-break: break-word;
+}
+.chat-message__meta {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+    font-size: 10px;
+    opacity: 0.7;
+}
+.chat-message_user .chat-message__meta {
+    color: #ccc;
+}
+.chat-message_bot .chat-message__meta {
+    color: #666;
+}
+.chat-message__status {
+    font-size: 12px;
+}
+.chat-message__status i {
+    font-size: 12px;
+}
+.chat__footer {
+    display: flex;
+    padding: 12px;
+    border-top: 1px solid #ddd;
+    background: white;
+    border-radius: 0 0 24px 24px;
+    gap: 8px;
+}
+.chat__input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 40px;
+    outline: none;
+    font-size: 14px;
+}
+.chat__send {
+    background: #111;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.chat__send:hover {
+    transform: scale(1.05);
+}
+
+/* ---------- COMMON MEDIA QUERIES ---------- */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 40px;
+    }
+    .review-card {
+        flex: 0 0 calc(50% - 25px);
+    }
+    .footer__bottom {
+        flex-direction: column-reverse;
+        gap: 15px;
+    }
+}
+@media (max-width: 768px) {
+    .header__inner {
+        justify-content: center;
+    }
+    .nav {
+        justify-content: center;
+    }
+    .review-card {
+        flex: 0 0 100%;
+    }
+    .chat {
+        bottom: 80px;
+        right: 10px;
+        left: 10px;
+        width: auto;
+        max-width: none;
+    }
+    .chat__messages {
+        min-height: 60vh;
+    }
+}
