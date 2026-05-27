@@ -1,24 +1,26 @@
-// Рендер карточек товаров
-function renderProducts(gridId, products) {
+function renderProducts(gridId, productArray) {
     const grid = document.getElementById(gridId);
     if (!grid) return;
-    grid.innerHTML = products.map(p => `
-        <div class="product-card">
-            ${p.sale ? '<div class="product-card__sale">SALE</div>' : ''}
-            <img class="product-card__img" src="${p.img}" alt="${p.name}">
-            <p class="product-card__name">${p.name}</p>
-            <p class="product-card__price">${p.price}₽</p>
-            <button class="product-card__btn add-to-cart">Добавить в корзину</button>
+    
+    grid.innerHTML = productArray.map(p => `
+        <div class="product" data-id="${p.id}">
+            ${p.sale ? '<div class="product__sale">SALE</div>' : ''}
+            ${p.new ? '<div class="product__new">NEW</div>' : ''}
+            <img class="product__img" src="${p.img}" alt="${p.name}">
+            <p class="product__name">${p.name}</p>
+            <p class="product__price">${p.price}₽</p>
+            <button class="product__btn" data-id="${p.id}">Добавить в корзину</button>
         </div>
     `).join('');
-    document.querySelectorAll(`#${gridId} .add-to-cart`).forEach(btn => btn.addEventListener('click', eduAlert));
+    
+    bindCartButtons();
+    updateAllCartButtons();
 }
 
-// Карусель товаров на главной
 const showcaseItems = [
-    { img: shoes[0].img, name: shoes[0].name, price: shoes[0].price },
-    { img: bags[0].img, name: bags[0].name, price: bags[0].price },
-    { img: shoes[1].img, name: shoes[1].name, price: shoes[1].price }
+    { img: products.shoes[0].img, name: products.shoes[0].name, price: products.shoes[0].price },
+    { img: products.bags[0].img, name: products.bags[0].name, price: products.bags[0].price },
+    { img: products.shoes[1].img, name: products.shoes[1].name, price: products.shoes[1].price }
 ];
 
 let currentShow = 0;
@@ -63,21 +65,26 @@ if (nextBtn) nextBtn.addEventListener('click', () => {
 buildDots();
 updateCarousel();
 
-// Рендер товаров
-renderProducts('shoesGrid', shoes);
-renderProducts('bagsGrid', bags);
+renderProducts('shoesGrid', products.shoes);
+renderProducts('bagsGrid', products.bags);
+renderProducts('accessoriesGrid', products.accessories);
+renderProducts('jacketsGrid', products.jackets);
 
-// Кнопки главной страницы
 const readMoreBtn = document.getElementById('readMoreBtn');
-if (readMoreBtn) readMoreBtn.addEventListener('click', eduAlert);
+if (readMoreBtn) readMoreBtn.addEventListener('click', () => {
+    window.location.href = 'about.html';
+});
 const categoriesBtn = document.getElementById('categoriesBtn');
 if (categoriesBtn) categoriesBtn.addEventListener('click', () => {
-    document.querySelector('.section').scrollIntoView({ behavior: 'smooth' });
+    window.location.href = 'catalog.html?type=catalog';
 });
 const blurArrow = document.getElementById('blurArrow');
-if (blurArrow) blurArrow.addEventListener('click', eduAlert);
+if (blurArrow) blurArrow.addEventListener('click', () => {
+    window.location.href = 'about.html';
+});
 const orderBtn = document.getElementById('orderBtn');
 if (orderBtn) orderBtn.addEventListener('click', eduAlert);
 
-// Инициализация общих компонентов
-loadCommonComponents('home');
+loadCommonComponents('home').then(() => {
+    updateAllCartButtons();
+});

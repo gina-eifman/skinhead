@@ -2,17 +2,13 @@
     <div class="container header__inner">
         <a href="/" class="logo" id="logoLink">SKINHEAD</a>
         <div class="search">
-            <i class="fas fa-search search__icon"></i>
-            <input type="text" placeholder="Поиск" class="search__input">
-            <i class="fas fa-sliders-h search__filter"></i>
+            <input type="text" placeholder="Поиск" class="search__input" id="globalSearchInput">
+            <i class="fas fa-search search__icon" id="searchButton"></i>
         </div>
-        <nav class="nav">
-            <!-- Ссылки будут заменены динамически через JS -->
-        </nav>
-        <div class="user-actions">
-            <i class="far fa-heart user-actions__icon"></i>
-            <i class="fas fa-shopping-bag user-actions__icon"></i>
-            <i class="far fa-user user-actions__icon"></i>
+        <nav class="nav"></nav>
+        <div class="actions">
+            <i class="fas fa-shopping-bag actions__icon" id="cartIcon"></i>
+            <i class="far fa-user actions__icon" id="profileIcon"></i>
         </div>
     </div>
 </header>

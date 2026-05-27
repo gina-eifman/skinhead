@@ -1,4 +1,4 @@
-/* ---------- PROMO (ГЛАВНАЯ) ---------- */
+/* ---------- PROMO ---------- */
 .promo {
     margin: 60px 0 80px;
 }
@@ -8,23 +8,23 @@
     gap: 60px;
     align-items: center;
 }
-.promo__image-col {
+.promo__img_col {
     flex: 1.2;
     position: relative;
 }
-.promo__img-wrapper {
+.promo__img_wrap {
     position: relative;
     border-radius: 24px;
     overflow: visible;
 }
-.promo__image {
+.promo__img {
     width: 100%;
     height: auto;
     display: block;
     border-radius: 24px;
     object-fit: cover;
 }
-.promo__blur-card {
+.promo__blur {
     position: absolute;
     bottom: 30px;
     left: 30px;
@@ -35,12 +35,12 @@
     max-width: 280px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
-.promo__blur-text {
+.promo__blur_text {
     font-size: 16px;
     font-weight: 600;
     color: #000;
 }
-.promo__blur-arrow {
+.promo__blur_arrow {
     position: absolute;
     top: -16px;
     right: -16px;
@@ -55,7 +55,7 @@
     cursor: pointer;
     transition: 0.2s;
 }
-.promo__blur-arrow i {
+.promo__blur_arrow i {
     font-size: 24px;
     color: #111;
 }
@@ -75,11 +75,12 @@
     margin-bottom: 40px;
     color: #2c2c2c;
 }
-.promo__buttons {
+.promo__btns {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
 }
+
 .btn {
     padding: 14px 28px;
     font-size: 18px;
@@ -104,14 +105,13 @@
     box-shadow: 0 6px 14px rgba(0,0,0,0.1);
 }
 
-/* ---------- DIVIDER ---------- */
 .divider {
     height: 1px;
     background: #111;
     margin: 80px 0 0;
 }
 
-/* ---------- PRODUCTS SECTION ---------- */
+/* ---------- SECTIONS ---------- */
 .section {
     margin: 120px 0;
 }
@@ -120,62 +120,13 @@
     font-weight: 700;
     margin-bottom: 60px;
 }
-.product-grid {
+.product_grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 40px;
 }
-.product-card {
-    position: relative;
-}
-.product-card__sale {
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    background: #e33b3b;
-    color: white;
-    font-size: 14px;
-    font-weight: 700;
-    padding: 4px 12px;
-    border-radius: 4px;
-    z-index: 2;
-}
-.product-card__img {
-    width: 100%;
-    aspect-ratio: 300 / 370;
-    object-fit: cover;
-    border-radius: 16px;
-    background: #f0f0f0;
-    margin-bottom: 20px;
-}
-.product-card__name {
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 8px;
-}
-.product-card__price {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 16px;
-}
-.product-card__btn {
-    background: #111;
-    color: white;
-    border: none;
-    padding: 10px 0;
-    width: 100%;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.2s;
-}
-.product-card__btn:hover {
-    transform: translateY(-2px);
-    background: #2c2c2c;
-}
 
-/* ---------- SHOWCASE CAROUSEL (ГЛАВНАЯ) ---------- */
+/* ---------- SHOWCASE ---------- */
 .showcase {
     margin: 160px auto;
 }
@@ -212,7 +163,7 @@
     background: #111;
     color: white;
 }
-.showcase__slide-wrapper {
+.showcase__slide {
     position: relative;
     max-width: 700px;
     width: 100%;
@@ -274,7 +225,6 @@
     background: #111;
 }
 
-/* ---------- MEDIA QUERIES (ГЛАВНАЯ) ---------- */
 @media (max-width: 1024px) {
     .showcase__arrow {
         width: 64px;
@@ -288,10 +238,10 @@
     .promo__grid {
         flex-direction: column;
     }
-    .promo__blur-card {
+    .promo__blur {
         left: 10px;
     }
-    .promo__buttons {
+    .promo__btns {
         justify-content: center;
     }
     .showcase__arrow {

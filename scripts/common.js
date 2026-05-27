@@ -12,49 +12,29 @@ async function loadComponent(placeholderId, filePath, callback = null) {
     }
 }
 
-// ---------- ИНИЦИАЛИЗАЦИЯ НАВИГАЦИИ (вызывается после загрузки шапки) ----------
+// ---------- ИНИЦИАЛИЗАЦИЯ НАВИГАЦИИ ----------
 function initNavigation(activePage) {
     const navContainer = document.querySelector('.nav');
     if (!navContainer) return;
 
     const navLinks = [
         { link: "home", name: "Главная", page: "index.html" },
-        { link: "new", name: "Новинки", page: "#" },
-        { link: "sale", name: "Распродажа", page: "#" },
-        { link: "catalog", name: "Каталог", page: "#" },
         { link: "about", name: "О нас", page: "about.html" },
-        { link: "contacts", name: "Контакты", page: "#" }
+        { link: "catalog", name: "Каталог", page: "catalog.html?type=catalog" },
+        { link: "new", name: "Новинки", page: "catalog.html?type=new" },
+        { link: "sale", name: "Распродажа", page: "catalog.html?type=sale" }
     ];
 
     navContainer.innerHTML = navLinks.map(item => `
         <a href="${item.page}" class="nav__link ${activePage === item.link ? 'nav__link_active' : ''}" data-link="${item.link}">${item.name}</a>
     `).join('');
 
-    // Обработчики кликов
     document.querySelectorAll('.nav__link').forEach(link => {
         link.addEventListener('click', (e) => {
             const dataLink = link.getAttribute('data-link');
             if (link.classList.contains('nav__link_active')) {
                 e.preventDefault();
-                return;
-            }
-            if (dataLink === 'home') {
-                if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/') {
-                    e.preventDefault();
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                } else {
-                    window.location.href = '/skinhead/index.html';
-                }
-            } else if (dataLink === 'about') {
-                if (window.location.pathname.endsWith('about.html')) {
-                    e.preventDefault();
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                } else {
-                    window.location.href = '/skinhead/about.html';
-                }
-            } else {
-                e.preventDefault();
-                eduAlert();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         });
     });
@@ -66,14 +46,119 @@ function initNavigation(activePage) {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
+}
 
-    // Общие обработчики для иконок и ссылок в футере (появятся после загрузки футера)
-    document.querySelectorAll('.footer__col-link, .social__icon, .search__filter, .user-actions__icon').forEach(el => {
-        el.addEventListener('click', eduAlert);
+// ---------- ИНИЦИАЛИЗАЦИЯ ИКОНОК КОРЗИНЫ И ПРОФИЛЯ ----------
+function initUserActions() {
+    const cartIcon = document.getElementById('cartIcon');
+    const profileIcon = document.getElementById('profileIcon');
+
+    if (cartIcon) {
+        cartIcon.addEventListener('click', () => {
+            window.location.href = 'cart.html';
+        });
+    }
+    if (profileIcon) {
+        profileIcon.addEventListener('click', () => {
+            window.location.href = 'profile.html';
+        });
+    }
+}
+
+// ---------- УНИВЕРСАЛЬНАЯ ЛОГИКА КОРЗИНЫ ДЛЯ КАРТОЧЕК ----------
+// ---------- ОБНОВЛЕНИЕ СЧЁТЧИКА НА ИКОНКЕ КОРЗИНЫ ----------
+function updateCartCounter() {
+    const count = getCartCount();
+    const cartIcon = document.getElementById('cartIcon');
+    
+    if (!cartIcon) return;
+    
+    // Удаляем старый счётчик, если он есть
+    const oldCounter = cartIcon.querySelector('.cart-counter');
+    if (oldCounter) oldCounter.remove();
+    
+    if (count > 0) {
+        const counter = document.createElement('span');
+        counter.className = 'cart-counter';
+        counter.textContent = count;
+        counter.style.cssText = 'position: absolute; top: -8px; right: -12px; background: #9A3636; color: white; font-size: 12px; border-radius: 50%; padding: 2px 6px; min-width: 18px; text-align: center;';
+        cartIcon.style.position = 'relative';
+        cartIcon.appendChild(counter);
+    }
+}
+function updateAllCartButtons() {
+    const cart = getCart();
+    const cartIds = cart.map(item => item.id);
+    
+    document.querySelectorAll('.product__btn').forEach(btn => {
+        const productId = parseInt(btn.dataset.id);
+        const isInCart = cartIds.includes(productId);
+        
+        if (isInCart) {
+            btn.textContent = 'В корзине';
+            btn.classList.add('product__btn_added');
+        } else {
+            btn.textContent = 'Добавить в корзину';
+            btn.classList.remove('product__btn_added');
+        }
     });
 }
 
-// ---------- ИНИЦИАЛИЗАЦИЯ ЧАТА (после загрузки chat.html) ----------
+function handleCartButtonClick(e) {
+    e.stopPropagation();
+    const btn = e.currentTarget;
+    const productId = parseInt(btn.dataset.id);
+    const cart = getCart();
+    const isInCart = cart.some(item => item.id === productId);
+    
+    if (isInCart) {
+        removeFromCart(productId);
+        btn.textContent = 'Добавить в корзину';
+        btn.classList.remove('product__btn_added');
+    } else {
+        addToCart(productId);
+        btn.textContent = 'В корзине';
+        btn.classList.add('product__btn_added');
+    }
+    updateCartCounter();
+}
+
+function bindCartButtons() {
+    document.querySelectorAll('.product__btn').forEach(btn => {
+        btn.removeEventListener('click', handleCartButtonClick);
+        btn.addEventListener('click', handleCartButtonClick);
+    });
+}
+
+// ---------- ИНИЦИАЛИЗАЦИЯ ПОИСКА ----------
+function initGlobalSearch() {
+    const searchInput = document.getElementById('globalSearchInput');
+    const searchButton = document.getElementById('searchButton');
+    
+    if (!searchInput) return;
+    
+    function performSearch() {
+        const query = searchInput.value.trim();
+        if (query.length >= 2) {
+            window.location.href = `catalog.html?type=catalog&search=${encodeURIComponent(query)}`;
+        } else if (query.length === 1) {
+            eduAlert();
+        }
+    }
+    
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            performSearch();
+        }
+    });
+    
+    if (searchButton) {
+        searchButton.addEventListener('click', performSearch);
+    }
+}
+
+// ---------- ИНИЦИАЛИЗАЦИЯ ЧАТА ----------
 function initChat() {
     const chatButton = document.getElementById('chatButton');
     const chatWidget = document.getElementById('chatWidget');
@@ -96,7 +181,7 @@ function initChat() {
     function addMessage(text, sender, status = 'sent', timestamp = null) {
         const time = timestamp || new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         const messageDiv = document.createElement('div');
-        messageDiv.className = `chat-message chat-message_${sender}`;
+        messageDiv.className = `message message_${sender}`;
         let statusIcon = '';
         if (sender === 'user') {
             if (status === 'read') statusIcon = '<i class="fas fa-check-double"></i>';
@@ -104,10 +189,10 @@ function initChat() {
             else if (status === 'error') statusIcon = '<i class="fas fa-times-circle"></i>';
         }
         messageDiv.innerHTML = `
-            <div class="chat-message__text">${escapeHtml(text)}</div>
-            <div class="chat-message__meta">
-                <span class="chat-message__time">${time}</span>
-                ${statusIcon ? `<span class="chat-message__status">${statusIcon}</span>` : ''}
+            <div class="message__text">${escapeHtml(text)}</div>
+            <div class="message__meta">
+                <span class="message__time">${time}</span>
+                ${statusIcon ? `<span class="message__status">${statusIcon}</span>` : ''}
             </div>
         `;
         chatMessages.appendChild(messageDiv);
@@ -153,7 +238,7 @@ function initChat() {
     }
 }
 
-// ---------- ИНИЦИАЛИЗАЦИЯ КАРУСЕЛИ ОТЗЫВОВ (после загрузки reviews.html) ----------
+// ---------- ИНИЦИАЛИЗАЦИЯ КАРУСЕЛИ ОТЗЫВОВ ----------
 function initReviews() {
     let reviewPage = 0;
     let pageSize = 3;
@@ -184,16 +269,16 @@ function initReviews() {
         const start = reviewPage * pageSize;
         const pageItems = reviewsData.slice(start, start + pageSize);
         track.innerHTML = pageItems.map(r => `
-            <div class="review-card">
-                <div class="review-card__profile">
-                    <img class="review-card__avatar" src="${r.avatar}" alt="${r.name}">
+            <div class="review">
+                <div class="review__profile">
+                    <img class="review__avatar" src="${r.avatar}" alt="${r.name}">
                     <div>
-                        <div class="review-card__name">${r.name}</div>
-                        <div class="review-card__service">${r.service}</div>
+                        <div class="review__name">${r.name}</div>
+                        <div class="review__service">${r.service}</div>
                     </div>
                 </div>
-                <p class="review-card__text">${r.text}</p>
-                <div class="review-card__stars">${'★'.repeat(r.stars)}${'☆'.repeat(5 - r.stars)}</div>
+                <p class="review__text">${r.text}</p>
+                <div class="review__stars">${'★'.repeat(r.stars)}${'☆'.repeat(5 - r.stars)}</div>
             </div>
         `).join('');
         updateProgressFill();
@@ -222,10 +307,12 @@ function initReviews() {
 async function loadCommonComponents(activePage) {
     await loadComponent('header-placeholder', '/skinhead/components/header.html');
     initNavigation(activePage);
-
+    initUserActions();
+    initGlobalSearch();
+    updateCartCounter(); // <-- счётчик обновляется после загрузки шапки
+    
     await loadComponent('footer-placeholder', '/skinhead/components/footer.html');
-    // Повторно привязываем обработчики для ссылок в футере (они могли перезаписаться)
-    document.querySelectorAll('.footer__col-link, .social__icon, .search__filter, .user-actions__icon').forEach(el => {
+    document.querySelectorAll('.footer__col-link, .social__icon').forEach(el => {
         el.addEventListener('click', eduAlert);
     });
 

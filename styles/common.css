@@ -1,4 +1,3 @@
-/* ---------- RESET ---------- */
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +11,6 @@
     scroll-behavior: smooth;
 }
 
-/* ---------- CONTAINER ---------- */
 .container {
     max-width: 1523px;
     margin: 0 auto;
@@ -59,6 +57,7 @@
 .search__icon {
     font-size: 18px;
     color: #666;
+    cursor: pointer;
 }
 .search__input {
     border: none;
@@ -66,12 +65,6 @@
     font-size: 16px;
     flex: 1;
     outline: none;
-}
-.search__filter {
-    font-size: 20px;
-    color: #444;
-    cursor: pointer;
-    margin-left: 5px;
 }
 
 /* ---------- NAVIGATION ---------- */
@@ -97,19 +90,100 @@
 }
 
 /* ---------- USER ACTIONS ---------- */
-.user-actions {
+.actions {
     display: flex;
     gap: 25px;
     align-items: center;
 }
-.user-actions__icon {
+.actions__icon {
     font-size: 28px;
     color: #111;
     cursor: pointer;
     transition: 0.2s;
+    position: relative;
+}
+.actions__icon:hover {
+    opacity: 0.7;
 }
 
-/* ---------- REVIEWS (ОБЩИЙ КОМПОНЕНТ) ---------- */
+/* ---------- PRODUCT CARD ---------- */
+.product {
+    position: relative;
+}
+.product__sale {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: #e33b3b;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 4px;
+    z-index: 2;
+}
+.product__new {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: #111;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 4px;
+    z-index: 2;
+}
+.product__sale + .product__new,
+.product__new + .product__sale {
+    top: 60px;
+}
+.product__img {
+    width: 100%;
+    aspect-ratio: 300 / 370;
+    object-fit: cover;
+    border-radius: 16px;
+    background: #f0f0f0;
+    margin-bottom: 20px;
+}
+.product__name {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+.product__price {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+.product__btn {
+    background: #111;
+    color: white;
+    border: none;
+    padding: 10px 0;
+    width: 100%;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.product__btn:hover {
+    transform: translateY(-2px);
+    background: #2c2c2c;
+}
+.product__btn_added {
+    background: white;
+    color: #111;
+    border: 1px solid #111;
+}
+.product__btn_added:hover {
+    background: #f5f5f5;
+    transform: none;
+    box-shadow: none;
+}
+
+/* ---------- REVIEWS ---------- */
 .reviews {
     background: #f8f8f8;
     padding: 80px 0;
@@ -130,40 +204,40 @@
     overflow-x: hidden;
     scroll-behavior: smooth;
 }
-.review-card {
+.review {
     flex: 0 0 calc(33.333% - 34px);
     background: white;
     border-radius: 32px;
     padding: 40px 30px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.05);
 }
-.review-card__profile {
+.review__profile {
     display: flex;
     align-items: center;
     gap: 15px;
     margin-bottom: 20px;
 }
-.review-card__avatar {
+.review__avatar {
     width: 75px;
     height: 75px;
     border-radius: 50%;
     object-fit: cover;
     background: #ccc;
 }
-.review-card__name {
+.review__name {
     font-size: 24px;
     font-weight: 700;
 }
-.review-card__service {
+.review__service {
     font-size: 16px;
     color: #777;
 }
-.review-card__text {
+.review__text {
     font-size: 16px;
     line-height: 1.4;
     margin: 20px 0;
 }
-.review-card__stars {
+.review__stars {
     color: #111;
     font-size: 18px;
     letter-spacing: 2px;
@@ -197,7 +271,7 @@
     margin: 0 20px;
     position: relative;
 }
-.reviews__progress-fill {
+.reviews__progress_fill {
     position: absolute;
     height: 4px;
     background: #111;
@@ -212,7 +286,7 @@
     padding: 80px 0 40px;
     border-top: 1px solid #eee;
 }
-.footer__columns {
+.footer__cols {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -221,20 +295,20 @@
 .footer__col {
     min-width: 160px;
 }
-.footer__col-title {
+.footer__title {
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 24px;
 }
-.footer__col-text,
-.footer__col-link {
+.footer__text,
+.footer__link {
     font-size: 16px;
     color: #444;
     text-decoration: none;
     display: block;
     margin-bottom: 12px;
 }
-.footer__col-link:hover {
+.footer__link:hover {
     text-decoration: underline;
 }
 .footer__bottom {
@@ -257,13 +331,13 @@
 .social__icon:hover {
     opacity: 0.7;
 }
-.footer__copyright {
+.footer__copy {
     font-size: 14px;
     color: #666;
 }
 
-/* ---------- CHAT FAB ---------- */
-.chat-fab {
+/* ---------- CHAT ---------- */
+.chat_fab {
     position: fixed;
     bottom: 30px;
     right: 30px;
@@ -281,11 +355,10 @@
     z-index: 99;
     transition: 0.2s;
 }
-.chat-fab:hover {
+.chat_fab:hover {
     transform: scale(1.05);
 }
 
-/* ---------- CHAT WIDGET ---------- */
 .chat {
     position: fixed;
     bottom: 100px;
@@ -294,7 +367,7 @@
     max-width: calc(100vw - 60px);
     background: white;
     border-radius: 24px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
     display: flex;
     flex-direction: column;
     z-index: 1000;
@@ -338,7 +411,7 @@
     gap: 12px;
     background: #f9f9f9;
 }
-.chat-message {
+.message {
     display: flex;
     flex-direction: column;
     max-width: 85%;
@@ -348,22 +421,22 @@
     line-height: 1.4;
     position: relative;
 }
-.chat-message_user {
+.message_user {
     align-self: flex-end;
     background: #111;
     color: white;
     border-bottom-right-radius: 4px;
 }
-.chat-message_bot {
+.message_bot {
     align-self: flex-start;
     background: #eaeaea;
     color: #111;
     border-bottom-left-radius: 4px;
 }
-.chat-message__text {
+.message__text {
     word-break: break-word;
 }
-.chat-message__meta {
+.message__meta {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -372,16 +445,13 @@
     font-size: 10px;
     opacity: 0.7;
 }
-.chat-message_user .chat-message__meta {
+.message_user .message__meta {
     color: #ccc;
 }
-.chat-message_bot .chat-message__meta {
+.message_bot .message__meta {
     color: #666;
 }
-.chat-message__status {
-    font-size: 12px;
-}
-.chat-message__status i {
+.message__status {
     font-size: 12px;
 }
 .chat__footer {
@@ -414,12 +484,12 @@
     transform: scale(1.05);
 }
 
-/* ---------- COMMON MEDIA QUERIES ---------- */
+/* ---------- MEDIA ---------- */
 @media (max-width: 1024px) {
     .container {
         padding: 0 40px;
     }
-    .review-card {
+    .review {
         flex: 0 0 calc(50% - 25px);
     }
     .footer__bottom {
@@ -434,7 +504,7 @@
     .nav {
         justify-content: center;
     }
-    .review-card {
+    .review {
         flex: 0 0 100%;
     }
     .chat {

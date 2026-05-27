@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>SKINHEAD — Корзина</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/skinhead/styles/common.css">
+    <link rel="stylesheet" href="/skinhead/styles/cart.css">
+</head>
+<body class="page">
+
+<div id="header-placeholder"></div>
+<div id="chat-placeholder"></div>
+
+<main class="main">
+    <div class="container">
+        <h1 class="cart__title">Корзина</h1>
+        <div id="cart-container">
+            <div class="cart__empty" id="cartEmpty" style="display: none;">
+                <p>Ваша корзина пуста</p>
+                <a href="catalog.html?type=catalog" class="cart__empty_btn">Перейти в каталог</a>
+            </div>
+            <div class="cart__content" id="cartContent">
+                <div class="cart__items" id="cartItems"></div>
+                <div class="cart__summary">
+                    <p class="cart__summary_total">Итого: <span id="cartTotal">0</span> ₽</p>
+                    <button class="cart__summary_btn" id="checkoutBtn">Оформить заказ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="reviews-placeholder"></div>
+</main>
+
+<div id="footer-placeholder"></div>
+
+<script src="/skinhead/scripts/data.js"></script>
+<script src="/skinhead/scripts/common.js"></script>
+<script src="/skinhead/scripts/cart.js"></script>
+</body>
+</html>

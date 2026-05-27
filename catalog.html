@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>SKINHEAD — Каталог</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/skinhead/styles/common.css">
+    <link rel="stylesheet" href="/skinhead/styles/catalog.css">
+</head>
+<body class="page">
+
+<div id="header-placeholder"></div>
+<div id="chat-placeholder"></div>
+
+<main class="main">
+    <div class="container">
+        <div class="catalog">
+            <h1 class="catalog__title" id="pageTitle">Каталог</h1>
+            <div class="catalog__info" id="searchInfo" style="display: none;"></div>
+            <div class="catalog__filters" id="categoryFilters"></div>
+        </div>
+        
+        <div class="catalog__grid" id="productsGrid"></div>
+        
+        <div class="catalog__more" id="loadMoreContainer" style="display: none;">
+            <button class="catalog__more_btn" id="loadMoreBtn">Показать ещё</button>
+        </div>
+    </div>
+    <div id="reviews-placeholder"></div>
+</main>
+
+<div id="footer-placeholder"></div>
+
+<script src="/skinhead/scripts/data.js"></script>
+<script src="/skinhead/scripts/common.js"></script>
+<script src="/skinhead/scripts/catalog.js"></script>
+</body>
+</html>

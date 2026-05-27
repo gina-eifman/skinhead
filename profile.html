@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>SKINHEAD — Профиль</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/skinhead/styles/common.css">
+    <link rel="stylesheet" href="/skinhead/styles/profile.css">
+</head>
+<body class="page">
+
+<div id="header-placeholder"></div>
+<div id="chat-placeholder"></div>
+
+<main class="main">
+    <div class="container">
+        <h1 class="profile__title">Профиль</h1>
+        <div class="profile__card">
+            <div class="profile__avatar">
+                <img src="/skinhead/assets/avatar-profile.jpg" alt="Аватар" id="profileAvatar">
+            </div>
+            <div class="profile__info">
+                <div class="profile__field">
+                    <label>Имя</label>
+                    <p id="profileName">Александр Петров</p>
+                </div>
+                <div class="profile__field">
+                    <label>Email</label>
+                    <p id="profileEmail">alexander@example.com</p>
+                </div>
+                <div class="profile__field">
+                    <label>Телефон</label>
+                    <p id="profilePhone">+7 (999) 123-45-67</p>
+                </div>
+                <div class="profile__field">
+                    <label>Адрес доставки</label>
+                    <p id="profileAddress">г. Москва, ул. Тверская, д. 5</p>
+                </div>
+            </div>
+        </div>
+        <p class="profile__note">* Данные предоставлены для просмотра. Редактирование недоступно.</p>
+    </div>
+    <div id="reviews-placeholder"></div>
+</main>
+
+<div id="footer-placeholder"></div>
+
+<script src="/skinhead/scripts/data.js"></script>
+<script src="/skinhead/scripts/common.js"></script>
+<script src="/skinhead/scripts/profile.js"></script>
+</body>
+</html>

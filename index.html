@@ -1,86 +1,92 @@
 <!DOCTYPE html>
 <html lang="ru">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-        <title>SKINHEAD — Главная</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <link rel="stylesheet" href="/skinhead/styles/common.css">
-        <link rel="stylesheet" href="/skinhead/styles/index.css">
-    </head>
-    <body class="page">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>SKINHEAD — Главная</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/skinhead/styles/common.css">
+    <link rel="stylesheet" href="/skinhead/styles/index.css">
+</head>
+<body class="page">
 
-    <div id="header-placeholder"></div>
-    <div id="chat-placeholder"></div>
+<div id="header-placeholder"></div>
+<div id="chat-placeholder"></div>
 
-    <main class="main">
-        <div class="container">
-            <!-- промо-баннер -->
-            <div class="promo">
+<main class="main">
+    <div class="container">
+        <div class="promo">
             <div class="promo__grid">
-                <div class="promo__image-col">
-                <div class="promo__img-wrapper">
-                    <img class="promo__image" src="/skinhead/assets/main.png" alt="кожаная обувь">
-                    <div class="promo__blur-card">
-                    <p class="promo__blur-text">Премиальная кожа ручной выделки</p>
-                    <div class="promo__blur-arrow" id="blurArrow">
-                        <i class="fas fa-arrow-right"></i>
+                <div class="promo__img_col">
+                    <div class="promo__img_wrap">
+                        <img class="promo__img" src="/skinhead/assets/main.png" alt="кожаная обувь">
+                        <div class="promo__blur">
+                            <p class="promo__blur_text">Премиальная кожа ручной выделки</p>
+                            <div class="promo__blur_arrow" id="blurArrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </div>
                     </div>
-                    </div>
-                </div>
                 </div>
                 <div class="promo__content">
-                <h1 class="promo__title">SKINHEAD</h1>
-                <p class="promo__desc">Эстетика материала и магия ремесла. Мы приручаем кожу, превращая в продолжение вашего характера.</p>
-                <div class="promo__buttons">
-                    <button class="btn btn_dark" id="readMoreBtn">Читать больше</button>
-                    <button class="btn btn_light" id="categoriesBtn">Доступные категории</button>
+                    <h1 class="promo__title">SKINHEAD</h1>
+                    <p class="promo__desc">Эстетика материала и магия ремесла. Мы приручаем кожу, превращая в продолжение вашего характера.</p>
+                    <div class="promo__btns">
+                        <button class="btn btn_dark" id="readMoreBtn">Читать больше</button>
+                        <button class="btn btn_light" id="categoriesBtn">Доступные категории</button>
+                    </div>
                 </div>
-                </div>
-            </div>
-            </div>
-            <div class="divider"></div>
-
-            <!-- обувь -->
-            <div class="section">
-            <h2 class="section__title">Обувь</h2>
-            <div class="product-grid" id="shoesGrid"></div>
-            </div>
-
-            <!-- сумки -->
-            <div class="section">
-            <h2 class="section__title">Сумки</h2>
-            <div class="product-grid" id="bagsGrid"></div>
             </div>
         </div>
+        <div class="divider"></div>
 
-        <!-- большая карусель товаров -->
-        <div class="container showcase">
-            <div class="showcase__main">
+        <div class="section">
+            <h2 class="section__title">Обувь</h2>
+            <div class="product_grid" id="shoesGrid"></div>
+        </div>
+
+        <div class="section">
+            <h2 class="section__title">Сумки</h2>
+            <div class="product_grid" id="bagsGrid"></div>
+        </div>
+
+        <div class="section">
+            <h2 class="section__title">Аксессуары</h2>
+            <div class="product_grid" id="accessoriesGrid"></div>
+        </div>
+
+        <div class="section">
+            <h2 class="section__title">Куртки</h2>
+            <div class="product_grid" id="jacketsGrid"></div>
+        </div>
+    </div>
+
+    <div class="container showcase">
+        <div class="showcase__main">
             <div class="showcase__arrow showcase__arrow_white" id="prevSlideBtn">
                 <i class="fas fa-chevron-left"></i>
             </div>
-            <div class="showcase__slide-wrapper">
+            <div class="showcase__slide">
                 <img class="showcase__img" id="carouselImage" src="/skinhead/assets/shoes1.png" alt="Товар">
                 <div class="showcase__info">
-                <p class="showcase__name" id="carouselName">Ботинки JENI</p>
-                <p class="showcase__price" id="carouselPrice">6999₽</p>
+                    <p class="showcase__name" id="carouselName">Ботинки JENI</p>
+                    <p class="showcase__price" id="carouselPrice">6999₽</p>
                 </div>
                 <button class="showcase__btn" id="orderBtn">Сделать заказ</button>
             </div>
             <div class="showcase__arrow showcase__arrow_black" id="nextSlideBtn">
                 <i class="fas fa-chevron-right"></i>
             </div>
-            </div>
-            <div class="dots" id="carouselDots"></div>
         </div>
-    </main>
+        <div class="dots" id="carouselDots"></div>
+    </div>
+</main>
 
-    <div id="reviews-placeholder"></div>
-    <div id="footer-placeholder"></div>
+<div id="reviews-placeholder"></div>
+<div id="footer-placeholder"></div>
 
-    <script src="/skinhead/scripts/data.js"></script>
-    <script src="/skinhead/scripts/common.js"></script>
-    <script src="/skinhead/scripts/index.js"></script>
-    </body>
+<script src="/skinhead/scripts/data.js"></script>
+<script src="/skinhead/scripts/common.js"></script>
+<script src="/skinhead/scripts/index.js"></script>
+</body>
 </html>

@@ -1,0 +1,1 @@
+loadCommonComponents('profile');
